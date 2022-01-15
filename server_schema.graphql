@@ -1,0 +1,87 @@
+scalar Date
+
+type Query {
+  login(userName: String, password: String): Boolean!
+  user(name: String): User!
+  activity(id: ID): Activity!
+}
+
+type Mutation {
+  createUser(name: String, password: String): User!
+  createTodo(
+    name: String
+    title: String
+    dueTime: Date
+    activity: String
+    description: String
+    priority: Int
+  ): Todo!
+  modifyTodo(
+    id: ID
+    name: String
+    title: String
+    dueTime: Date
+    activity: String
+    description: String
+    priority: Int
+  ): Todo!
+  deleteTodo(id: ID, name: String, activity: String): ID!
+  createActivity(users: [String], title: String): Activity!
+  modifyActivity(id: String, users: [String], title: String): Activity!
+  deleteActivity(id: ID): ID!
+  createProgress(title: String, dueTime: Date, activity: ID): Progress!
+  modifyProgress(title: String, dueTime: Date, id: ID, activity: ID!): Progress!
+  deleteProgress(id: ID, activity: ID): ID!
+}
+
+type Subscription {
+  activity(name: String!): ActivitySubscriptionPayload!
+  activityContent(aId: ID!): ActivityContentSubscriptionPayload!
+}
+
+type User {
+  id: ID!
+  name: String!
+  password: String!
+  todo: [Todo]!
+  activity: [Activity]!
+}
+
+type Todo {
+  id: ID!
+  title: String!
+  dueTime: Date!
+  activity: String
+  description: String
+  priority: Int!
+}
+
+type Activity {
+  id: ID!
+  title: String!
+  users: [String!]!
+  progress: [Progress]!
+  todo: [Todo]!
+}
+
+type Progress {
+  id: ID!
+  title: String!
+  dueTime: Date!
+}
+
+type ActivitySubscriptionPayload {
+  mutation: MutationType!
+  data: Activity!
+}
+
+type ActivityContentSubscriptionPayload {
+  mutation: MutationType!
+  data: Activity!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
