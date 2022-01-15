@@ -69,19 +69,20 @@ const Login = ({ setLogin }) => {
 
   const onSignFinish = async (values) => {
     console.log("Success:", values);
-    const { data } = await createUser({
-      variables: { name: values.username, password: values.password },
-    });
-    if (!data) {
-      message.error("User Exist");
+    try {
+      await createUser({
+        variables: { name: values.username, password: values.password },
+      });
+      localStorage.setItem(LOCALSTORAGE_USER, values.username);
+      localStorage.setItem(LOCALSTORAGE_PWD, values.password);
+      setLogin(true);
+      loginForm.resetFields();
+      signForm.resetFields();
+    } catch (e) {
+      message.error(e.message);
       signForm.resetFields();
       return;
     }
-    localStorage.setItem(LOCALSTORAGE_USER, values.username);
-    localStorage.setItem(LOCALSTORAGE_PWD, values.password);
-    setLogin(true);
-    loginForm.resetFields();
-    signForm.resetFields();
   };
 
   const onSignFinishFailed = (errorInfo) => {
