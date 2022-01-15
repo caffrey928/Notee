@@ -152,7 +152,7 @@ const ActivityList = ({
                           )}
                         </Col>
                         <Col span={3}>
-                          <Rate defaultValue={ele.priority} disabled />
+                          <Rate value={ele.priority} disabled />
                         </Col>
                       </Row>
                     </Menu.Item>

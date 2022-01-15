@@ -151,7 +151,7 @@ const Page = ({
                             <Col span={4}>{eele.dueTime}</Col>
                             <Col span={4}>{eele.activity}</Col>
                             <Col span={3}>
-                              <Rate defaultValue={eele.priority} disabled />
+                              <Rate value={eele.priority} disabled />
                             </Col>
                           </Row>
                         }
@@ -208,7 +208,7 @@ const Page = ({
                             <Col span={4}>{eele.dueTime}</Col>
                             <Col span={4}>{eele.activity}</Col>
                             <Col span={3}>
-                              <Rate defaultValue={eele.priority} disabled />
+                              <Rate value={eele.priority} disabled />
                             </Col>
                           </Row>
                         }

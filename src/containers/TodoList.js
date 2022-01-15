@@ -140,7 +140,7 @@ const TodoList = ({ setSeeForm, setFormMode, setActLock, setTodoID }) => {
                         )}
                       </Col>
                       <Col span={2}>
-                        <Rate defaultValue={eele.priority} disabled />
+                        <Rate value={eele.priority} disabled />
                       </Col>
                     </Row>
                   }
