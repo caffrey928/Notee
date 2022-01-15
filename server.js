@@ -18,6 +18,8 @@ import Activity from "./backend/resolvers/activity.js";
 import pkg from "graphql-iso-date";
 import mongo from "./backend/mongo.js";
 
+import wakeUpDyno from "./backend/wakeUpDyno.js"
+
 const { GraphQLDate } = pkg;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -57,6 +59,8 @@ server.installSubscriptionHandlers(httpServer);
 mongo.connect();
 
 httpServer.listen(port, () => {
+  const DYNO_URL = "https://notee112.herokuapp.com/"
+  wakeUpDyno(DYNO_URL)
   console.log(`🚀 Server Ready at ${port}! 🚀`);
   console.log(`Graphql Port at ${port}${server.subscriptionsPath}`);
 });
