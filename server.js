@@ -9,14 +9,16 @@ import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import * as db from "./backend/schema";
+import * as db from "./backend/schema.js";
 import Query from "./backend/resolvers/query.js";
 import Mutation from "./backend/resolvers/mutation.js";
 import Subscription from "./backend/resolvers/subscription.js";
-import User from "./backend/resolvers/user";
-import Activity from "./backend/resolvers/activity";
-import { GraphQLDate } from "graphql-iso-date";
+import User from "./backend/resolvers/user.js";
+import Activity from "./backend/resolvers/activity.js";
+import pkg from "graphql-iso-date";
 import mongo from "./backend/mongo.js";
+
+const { GraphQLDate } = pkg;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = process.env.PORT || 80;

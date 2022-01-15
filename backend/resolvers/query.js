@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 const Query = {
   async login(parent, { userName, password }, { db }, info) {
